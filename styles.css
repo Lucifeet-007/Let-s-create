@@ -16,7 +16,7 @@ body {
     height: 100%;
 }
 
-.login-box, .signup-box {
+.login-box, .signup-box, .otp-box {
     width: 300px;
     padding: 40px;
     position: relative;
@@ -31,7 +31,7 @@ body {
     display: block;
 }
 
-.login-box h1, .signup-box h1 {
+.login-box h1, .signup-box h1, .otp-box h1 {
     margin: 0 0 30px;
     padding: 0;
     color: #333;
@@ -83,4 +83,42 @@ body {
 
 .options a:hover {
     color: #feb47b;
+}
+
+.meeting-box {
+    width: 300px;
+    padding: 40px;
+    position: relative;
+    background: #fff;
+    text-align: center;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+}
+
+.meeting-box h1 {
+    margin: 0 0 30px;
+    padding: 0;
+    color: #333;
+    font-size: 30px;
+}
+
+.meetings-list {
+    margin-top: 20px;
+    text-align: left;
+}
+
+.meetings-list h2 {
+    margin-bottom: 10px;
+}
+
+.meetings-list ul {
+    list-style: none;
+    padding: 0;
+}
+
+.meetings-list li {
+    background: #f2f2f2;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
 }
