@@ -23,13 +23,49 @@
                 <button type="submit" class="btn">Book Meeting</button>
             </form>
         </div>
+        <div class="meetings-list">
+            <h2>Booked Meetings</h2>
+            <ul id="meetings">
+                <!-- Booked meetings will be shown here -->
+            </ul>
+        </div>
     </div>
 
     <script>
         document.getElementById('meeting-form').addEventListener('submit', function(event) {
             event.preventDefault();
-            alert('Meeting booked successfully!');
+            const topic = document.querySelector('input[name="meeting-topic"]').value;
+            const date = document.querySelector('input[name="meeting-date"]').value;
+            const time = document.querySelector('input[name="meeting-time"]').value;
+            
+            const meeting = {
+                topic,
+                date,
+                time
+            };
+
+            // Save the meeting data to localStorage
+            let meetings = JSON.parse(localStorage.getItem('meetings')) || [];
+            meetings.push(meeting);
+            localStorage.setItem('meetings', JSON.stringify(meetings));
+
+            // Display the meeting
+            displayMeetings();
         });
+
+        function displayMeetings() {
+            const meetings = JSON.parse(localStorage.getItem('meetings')) || [];
+            const meetingsList = document.getElementById('meetings');
+            meetingsList.innerHTML = '';
+            meetings.forEach(meeting => {
+                const li = document.createElement('li');
+                li.textContent = `${meeting.topic} - ${meeting.date} at ${meeting.time}`;
+                meetingsList.appendChild(li);
+            });
+        }
+
+        // Display meetings on page load
+        displayMeetings();
     </script>
 </body>
 </html>
