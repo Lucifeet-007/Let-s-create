@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book a Zoom Meeting</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="meeting-box">
+            <h1>Book a Zoom Meeting</h1>
+            <form id="meeting-form">
+                <div class="textbox">
+                    <input type="text" placeholder="Meeting Topic" name="meeting-topic" required>
+                </div>
+                <div class="textbox">
+                    <input type="date" name="meeting-date" required>
+                </div>
+                <div class="textbox">
+                    <input type="time" name="meeting-time" required>
+                </div>
+                <button type="submit" class="btn">Book Meeting</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('meeting-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            alert('Meeting booked successfully!');
+        });
+    </script>
+</body>
+</html>
