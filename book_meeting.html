@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book a Zoom Meeting</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="meeting-box">
+            <h1>Book a Zoom Meeting</h1>
+            <form id="meeting-form">
+                <div class="textbox">
+                    <input type="text" placeholder="Meeting Topic" name="meeting-topic" required>
+                </div>
+                <div class="textbox">
+                    <input type="date" name="meeting-date" required>
+                </div>
+                <div class="textbox">
+                    <input type="time" name="meeting-time" required>
+                </div>
+                <button type="submit" class="btn">Book Meeting</button>
+            </form>
+        </div>
+        <div class="meetings-list" id="meetings-list">
+            <h2>Booked Meetings</h2>
+            <ul id="meetings">
+                <!-- Booked meetings will be shown here -->
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        async function fetchMeetings() {
+            const response = await fetch('/get_meetings');
+            const meetings = await response.json();
+            const meetingsList = document.getElementById('meetings');
+            meetingsList.innerHTML = '';
+            meetings.forEach(meeting => {
+                const li = document.createElement('li');
+                li.textContent = `${meeting.topic} - ${meeting.date} at ${meeting.time} - Mobile: ${meeting.mobile}`;
+                meetingsList.appendChild(li);
+            });
+        }
+
+        document.getElementById('meeting-form').addEventListener('submit', async function(event) {
+            event.preventDefault();
+            const topic = document.querySelector('input[name="meeting-topic"]').value;
+            const date = document.querySelector('input[name="meeting-date"]').value;
+            const time = document.querySelector('input[name="meeting-time"]').value;
+
+            const response = await fetch('/book_meeting', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ topic, date, time }),
+            });
+
+            const result = await response.json();
+            alert(result.message);
+            if (response.ok) {
+                fetchMeetings();
+            }
+        });
+
+        // Fetch and display meetings on page load
+        fetchMeetings();
+    </script>
+</body>
+</html>
