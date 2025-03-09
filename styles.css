@@ -16,7 +16,7 @@ body {
     height: 100%;
 }
 
-.login-box {
+.login-box, .signup-box {
     width: 300px;
     padding: 40px;
     position: relative;
@@ -24,9 +24,14 @@ body {
     text-align: center;
     box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
     border-radius: 10px;
+    display: none;
 }
 
-.login-box h1 {
+.login-box {
+    display: block;
+}
+
+.login-box h1, .signup-box h1 {
     margin: 0 0 30px;
     padding: 0;
     color: #333;
